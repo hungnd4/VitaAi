@@ -1,0 +1,78 @@
+name: flutter_base_bloc
+description: "A new Flutter project."
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^8.1.6
+  get_it: ^7.7.0
+  dio: ^5.7.0
+  retrofit: ^4.4.1
+  pretty_dio_logger: ^1.4.0
+  share_plus: ^10.0.2
+  connectivity_plus: ^6.0.5
+  http: ^1.2.2
+  injectable: ^2.4.4
+  logger: ^2.4.0
+  freezed_annotation: any
+  json_annotation: ^4.9.0
+  flutter_screenutil: ^5.9.3
+  url_launcher: ^6.3.0
+  intl: ^0.19.0
+  shared_preferences: ^2.3.2
+  flutter_svg: ^2.0.10+1
+  google_fonts: ^6.2.1
+  go_router: ^14.3.0
+  easy_localization: ^3.0.7
+  flutter_dotenv: ^5.0.2
+  fluttertoast: ^8.2.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  retrofit_generator: ">=8.0.0 <10.0.0"
+  build_runner: any
+  json_serializable: any
+  freezed: ^2.5.7
+  flutter_gen_runner: #https://pub.dev/packages/flutter_gen
+  mockito: any
+
+global_options:
+  freezed:
+    runs_before:
+      - json_serializable
+  json_serializable:
+    runs_before:
+      - retrofit_generator:retrofit
+
+flutter_gen:
+  output: lib/gen/
+  integrations:
+    flutter_svg: true
+  assets:
+    exclude:
+      - .env
+      - .env.dev
+      - .env.stg
+
+flutter:
+  assets:
+    - .env
+    - .env.dev
+    - .env.stg
+    - assets/images/
+    - assets/icons/
+    - assets/translations/
+
+uses-material-design: true
+flutter_intl:
+  enabled: true
