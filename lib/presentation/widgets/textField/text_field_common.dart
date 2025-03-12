@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_bloc/core/config/resources/color.dart';
-// import 'package:flutter_base_bloc/core/config/resources/color.dart';
 import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
 import 'package:flutter_base_bloc/core/config/resources/styles.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
