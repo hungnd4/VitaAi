@@ -65,8 +65,15 @@ class $AssetsIconsGen {
   SvgGenImage get icEyeClose =>
       const SvgGenImage('assets/icons/ic_eye_close.svg');
 
+  /// File path: assets/icons/ic_facebook.svg
+  SvgGenImage get icFacebook =>
+      const SvgGenImage('assets/icons/ic_facebook.svg');
+
   /// File path: assets/icons/ic_funding.svg
   SvgGenImage get icFunding => const SvgGenImage('assets/icons/ic_funding.svg');
+
+  /// File path: assets/icons/ic_google.svg
+  SvgGenImage get icGoogle => const SvgGenImage('assets/icons/ic_google.svg');
 
   /// File path: assets/icons/ic_more_horizontal.svg
   SvgGenImage get icMoreHorizontal =>
@@ -119,41 +126,46 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        icAddSmall,
-        icAddressBook,
-        icArrowLeft,
-        icBack,
-        icBasicBack,
-        icBasicDown,
-        icBtc,
-        icChevronDown,
-        icClose,
-        icCopy,
-        icCopyAdd,
-        icEdit,
-        icExport,
-        icEyeClose,
-        icFunding,
-        icMoreHorizontal,
-        icNotice,
-        icReceive,
-        icReload,
-        icRemove,
-        icRight,
-        icScan,
-        icSend,
-        icSettings,
-        icSmallReceive,
-        icSmallSend,
-        icSupport,
-        icTick,
-        icWallet,
-        icWarning
-      ];
+    icAddSmall,
+    icAddressBook,
+    icArrowLeft,
+    icBack,
+    icBasicBack,
+    icBasicDown,
+    icBtc,
+    icChevronDown,
+    icClose,
+    icCopy,
+    icCopyAdd,
+    icEdit,
+    icExport,
+    icEyeClose,
+    icFacebook,
+    icFunding,
+    icGoogle,
+    icMoreHorizontal,
+    icNotice,
+    icReceive,
+    icReload,
+    icRemove,
+    icRight,
+    icScan,
+    icSend,
+    icSettings,
+    icSmallReceive,
+    icSmallSend,
+    icSupport,
+    icTick,
+    icWallet,
+    icWarning,
+  ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// File path: assets/images/logo_btc.png
   AssetGenImage get logoBtc =>
@@ -177,12 +189,13 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        logoBtc,
-        onboardingFirst,
-        onboardingFourth,
-        onboardingSecond,
-        onboardingThird
-      ];
+    logo,
+    logoBtc,
+    onboardingFirst,
+    onboardingFourth,
+    onboardingSecond,
+    onboardingThird,
+  ];
 }
 
 class $AssetsTranslationsGen {
@@ -199,7 +212,7 @@ class $AssetsTranslationsGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
@@ -207,11 +220,7 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -236,10 +245,10 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -271,15 +280,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
@@ -288,17 +290,11 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = false;
 
-  const SvgGenImage.vec(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -352,7 +348,8 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter: colorFilter ??
+      colorFilter:
+          colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,

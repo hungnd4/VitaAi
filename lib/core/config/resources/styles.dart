@@ -27,4 +27,14 @@ class AppTextStyle {
     fontSize: 14,
     color: AppTheme.getInstance().textPrimary,
   );
+  static final interText = GoogleFonts.inter(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: AppTheme.getInstance().textPrimary,
+  );
+  static final interBoldText = GoogleFonts.inter(
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    color: AppTheme.getInstance().textPrimary,
+  );
 }

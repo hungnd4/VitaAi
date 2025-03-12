@@ -38,15 +38,18 @@ class AppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppDimen.of(context);
-    return MaterialApp.router(
-      title: AppConstants.appName,
-      routerConfig: appRouterConfig,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        dialogBackgroundColor: AppTheme.getInstance().secondaryColor,
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+      child: MaterialApp.router(
+        title: AppConstants.appName,
+        routerConfig: appRouterConfig,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          dialogBackgroundColor: AppTheme.getInstance().secondaryColor,
+        ),
       ),
     );
   }

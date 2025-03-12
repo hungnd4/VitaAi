@@ -17,9 +17,17 @@ const colorShadow9 = Color(0xff162731);
 const colorBorder = Color(0xffEDEDED);
 const colorChip = Color(0xffF0F0F0);
 const colorExchange = Color(0xff596E73);
+const colorGrey88 = Color(0xffE0E0E0);
+const colorGrey51 = Color(0xff828282);
+const colorWhite = Color(0xffffffff);
+const colorBlack = Color(0xff000000);
+const colorF17C9B = Color(0xffF17C9B);
+const colorEEEEEE = Color(0xffEEEEEE);
 
 ///=========== Using to make change app theme ================================
 abstract class AppColor {
+  Color get grey88Color;
+  Color get grey51Color;
   Color get primaryColor;
   Color get formColor;
   Color get textPrimary;
@@ -38,9 +46,20 @@ abstract class AppColor {
   List<Color> get linearOnboarding;
   List<Color> get linearToolbar;
   List<Color> get linearSystemWallet;
+  List<Color> get linearButton;
 }
 
 class LightApp extends AppColor {
+  @override
+  Color get grey88Color {
+    return colorGrey88;
+  }
+
+  @override
+  Color get grey51Color {
+    return colorGrey51;
+  }
+
   @override
   Color get primaryColor {
     return colorPrimary;
@@ -91,6 +110,11 @@ class LightApp extends AppColor {
   List<Color> get linearSystemWallet => [
         colorSystemLeft,
         colorSystemRight,
+      ];
+  @override
+  List<Color> get linearButton => [
+        colorPrimary,
+        colorSecondary,
       ];
 
   @override
@@ -120,6 +144,16 @@ class LightApp extends AppColor {
 
 class DarkApp extends AppColor {
   @override
+  Color get grey88Color {
+    return colorGrey88;
+  }
+
+  @override
+  Color get grey51Color {
+    return colorGrey51;
+  }
+
+  @override
   Color get primaryColor {
     return colorPrimary;
   }
@@ -169,6 +203,11 @@ class DarkApp extends AppColor {
   List<Color> get linearSystemWallet => [
         colorSystemLeft,
         colorSystemRight,
+      ];
+  @override
+  List<Color> get linearButton => [
+        colorPrimary,
+        colorSecondary,
       ];
 
   @override
