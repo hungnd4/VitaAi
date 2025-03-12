@@ -5,7 +5,7 @@ import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
 import 'package:flutter_base_bloc/core/config/resources/styles.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
 
-class TextfieldCommon extends StatelessWidget {
+class TextFieldCommon extends StatelessWidget {
   final BorderSide? borderSide;
   final BorderRadius? borderRadius;
   final TextEditingController controller;
@@ -16,7 +16,7 @@ class TextfieldCommon extends StatelessWidget {
   final Widget? suffixIcon;
   final bool isPassword;
 
-  const TextfieldCommon({
+  const TextFieldCommon({
     this.borderRadius,
     this.isPassword = false,
     this.borderSide,
