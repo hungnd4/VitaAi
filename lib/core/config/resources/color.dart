@@ -17,9 +17,13 @@ const colorShadow9 = Color(0xff162731);
 const colorBorder = Color(0xffEDEDED);
 const colorChip = Color(0xffF0F0F0);
 const colorExchange = Color(0xff596E73);
+const colorGrey88 = Color(0xffE0E0E0);
+const colorGrey51 = Color(0xff828282);
 
 ///=========== Using to make change app theme ================================
 abstract class AppColor {
+  Color get grey88Color;
+  Color get grey51Color;
   Color get primaryColor;
   Color get formColor;
   Color get textPrimary;
@@ -41,6 +45,16 @@ abstract class AppColor {
 }
 
 class LightApp extends AppColor {
+  @override
+  Color get grey88Color {
+    return colorGrey88;
+  }
+
+  @override
+  Color get grey51Color {
+    return colorGrey51;
+  }
+
   @override
   Color get primaryColor {
     return colorPrimary;
@@ -119,6 +133,16 @@ class LightApp extends AppColor {
 }
 
 class DarkApp extends AppColor {
+  @override
+  Color get grey88Color {
+    return colorGrey88;
+  }
+
+  @override
+  Color get grey51Color {
+    return colorGrey51;
+  }
+
   @override
   Color get primaryColor {
     return colorPrimary;
