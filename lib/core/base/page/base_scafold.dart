@@ -12,6 +12,8 @@ class AppScaffold extends StatelessWidget {
   final VoidCallback? customBackAction;
   final bool showBackButton;
   final List<Widget>? appbarAction;
+  final FloatingActionButton? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
   const AppScaffold({
     super.key,
     this.showAppBar = true,
@@ -21,11 +23,15 @@ class AppScaffold extends StatelessWidget {
     this.customBackAction,
     this.showBackButton = true,
     this.appbarAction,
+    this.floatingActionButton,
+    this.floatingActionButtonLocation,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
       appBar: showAppBar
           ? AppBar(
               leading: showBackButton
