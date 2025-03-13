@@ -1,8 +1,15 @@
 {
-    "login":"Đăng nhập",
-    "logout":"Đăng xuất",
-    "exit":"Thoát ứng dụng",
-    "cancel":"Hủy",
-    "confirmExit":"Bạn có chắc chắn muốn thoát không?",
-    "yes":"Có"
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "exit": "Thoát ứng dụng",
+    "cancel": "Hủy",
+    "confirmExit": "Bạn có chắc chắn muốn thoát không?",
+    "yes": "Có",
+    "orContinueWith": "hoặc tiếp tục với",
+    "dontHaveAnAccount": "Bạn chưa có tài khoản?",
+    "google": "Google",
+    "facebook": "Facebook",
+    "signUp": "Đăng Ký",
+    "password": "Mật khẩu",
+    "sdt": "Số điện thoại"
 }

@@ -71,14 +71,12 @@ class $AssetsIconsGen {
   SvgGenImage get icEyeClose =>
       const SvgGenImage('assets/icons/ic_eye_close.svg');
 
+  /// File path: assets/icons/ic_facebook.svg
+  SvgGenImage get icFacebook =>
+      const SvgGenImage('assets/icons/ic_facebook.svg');
+
   /// File path: assets/icons/ic_funding.svg
   SvgGenImage get icFunding => const SvgGenImage('assets/icons/ic_funding.svg');
-
-  /// File path: assets/icons/ic_home.svg
-  SvgGenImage get icHome => const SvgGenImage('assets/icons/ic_home.svg');
-
-  /// File path: assets/icons/ic_list.svg
-  SvgGenImage get icList => const SvgGenImage('assets/icons/ic_list.svg');
 
   /// File path: assets/icons/ic_more_horizontal.svg
   SvgGenImage get icMoreHorizontal =>
@@ -144,8 +142,6 @@ class $AssetsIconsGen {
         icBasicBack,
         icBasicDown,
         icBtc,
-        icCamera,
-        icChatbot,
         icChevronDown,
         icClose,
         icCopy,
@@ -154,10 +150,7 @@ class $AssetsIconsGen {
         icExport,
         icEyeClose,
         icFunding,
-        icHome,
-        icList,
         icMoreHorizontal,
-        icNews,
         icNotice,
         icReceive,
         icReload,
@@ -165,7 +158,6 @@ class $AssetsIconsGen {
         icRight,
         icScan,
         icSend,
-        icSetting,
         icSettings,
         icSmallReceive,
         icSmallSend,
@@ -178,6 +170,9 @@ class $AssetsIconsGen {
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// File path: assets/images/logo_btc.png
   AssetGenImage get logoBtc =>
@@ -201,11 +196,12 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        logo,
         logoBtc,
         onboardingFirst,
         onboardingFourth,
         onboardingSecond,
-        onboardingThird
+        onboardingThird,
       ];
 }
 
@@ -231,11 +227,7 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -295,15 +287,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
@@ -312,17 +297,11 @@ class AssetGenImage {
 }
 
 class SvgGenImage {
-  const SvgGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+      : _isVecFormat = false;
 
-  const SvgGenImage.vec(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+      : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
