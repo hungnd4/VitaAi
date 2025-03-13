@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_bloc/core/config/resources/color.dart';
 import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
 import 'package:flutter_base_bloc/core/config/resources/styles.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
@@ -42,7 +43,7 @@ class AppButton extends StatelessWidget {
               vertical: Dimens.d8.h,
             ),
         decoration: BoxDecoration(
-          color: enabled == false ? AppTheme.getInstance().primaryColor : color,
+          color: enabled == false ? colorBrown : color,
           border: Border.all(
             color: (color != null || gradient != null)
                 ? Colors.transparent
@@ -51,14 +52,6 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(
             borderRadius ?? 8.r,
           ),
-          gradient: enabled == false
-              ? LinearGradient(
-                  colors: [
-                    AppTheme.getInstance().primaryColor,
-                    AppTheme.getInstance().primaryColor,
-                  ],
-                )
-              : gradient,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

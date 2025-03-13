@@ -48,7 +48,7 @@ class _SignInPageState extends State<SignInPage> {
             AppButton(
               width: double.infinity,
               title: LocaleKeys.login.tr(),
-              color: colorF17C9B,
+              color: colorPrimary,
               style: AppTextStyle.interBoldText.copyWith(
                 fontWeight: FontWeight.w500,
                 color: colorWhite,
@@ -132,7 +132,7 @@ class _SignInPageState extends State<SignInPage> {
                   child: Text(
                     LocaleKeys.signUp.tr(),
                     style: AppTextStyle.interText.copyWith(
-                      color: colorF17C9B,
+                      color: colorPrimary,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
