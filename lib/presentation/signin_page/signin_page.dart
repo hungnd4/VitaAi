@@ -18,8 +18,15 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  TextEditingController textInputControl = TextEditingController();
-  TextEditingController passInputControl = TextEditingController();
+  TextEditingController textInputController = TextEditingController();
+  TextEditingController passInputController = TextEditingController();
+  @override
+  void dispose() {
+    textInputController.dispose();
+    passInputController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -37,11 +44,13 @@ class _SignInPageState extends State<SignInPage> {
             ),
             spaceH24,
             TextFieldCommon(
-                hintText: LocaleKeys.sdt.tr(), controller: textInputControl),
+              hintText: LocaleKeys.sdt.tr(),
+              controller: textInputController,
+            ),
             spaceH16,
             TextFieldCommon(
               hintText: LocaleKeys.password.tr(),
-              controller: passInputControl,
+              controller: passInputController,
               isPassword: true,
             ),
             spaceH16,
