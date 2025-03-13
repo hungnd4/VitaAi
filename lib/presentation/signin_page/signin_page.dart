@@ -36,7 +36,8 @@ class _SignInPageState extends State<SignInPage> {
               style: AppTextStyle.interBoldText,
             ),
             spaceH24,
-            TextFieldCommon(hintText: 'Email', controller: textInputControl),
+            TextFieldCommon(
+                hintText: LocaleKeys.sdt.tr(), controller: textInputControl),
             spaceH16,
             TextFieldCommon(
               hintText: LocaleKeys.password.tr(),
@@ -57,7 +58,6 @@ class _SignInPageState extends State<SignInPage> {
             Row(
               children: [
                 Expanded(
-                  flex: 3,
                   child: Container(
                     width: double.infinity,
                     height: Dimens.d1,
@@ -66,7 +66,6 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 FittedBox(
                   child: Expanded(
-                    flex: 3,
                     child: Padding(
                       padding:
                           const EdgeInsets.symmetric(horizontal: Dimens.d2),
@@ -78,7 +77,6 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
                 Expanded(
-                  flex: 3,
                   child: Container(
                     width: double.infinity,
                     height: Dimens.d1,
@@ -88,27 +86,37 @@ class _SignInPageState extends State<SignInPage> {
               ],
             ),
             spaceH24,
-            AppButton(
-              width: double.infinity,
-              title: LocaleKeys.google.tr(),
-              color: colorEEEEEE,
-              style: AppTextStyle.interBoldText.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-              icon: Assets.icons.icGoogle.svg(),
-            ),
-            spaceH24,
-            AppButton(
-              width: double.infinity,
-              title: LocaleKeys.facebook.tr(),
-              color: colorEEEEEE,
-              style: AppTextStyle.interBoldText.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-              icon: Assets.icons.icFacebook.svg(
-                width: Dimens.d25.w,
-                height: Dimens.d25.h,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    shape: const CircleBorder(
+                      side: BorderSide(color: colorGrey88, width: 2),
+                    ),
+                  ),
+                  icon: Assets.icons.icGoogle.svg(
+                    width: 32.w,
+                    height: 32.h,
+                  ),
+                ),
+                spaceW16,
+                IconButton(
+                  onPressed: () {},
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    shape: const CircleBorder(
+                      side: BorderSide(color: colorGrey88, width: 2),
+                    ),
+                  ),
+                  icon: Assets.icons.icFacebook.svg(
+                    width: 32.w,
+                    height: 32.h,
+                  ),
+                ),
+              ],
             ),
             spaceH24,
             Row(
