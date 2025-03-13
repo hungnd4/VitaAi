@@ -7,6 +7,7 @@ import 'package:flutter_base_bloc/core/exception/exception.dart';
 import 'package:flutter_base_bloc/data/request/find_user_request.dart';
 import 'package:flutter_base_bloc/domain/entities/user.dart';
 import 'package:flutter_base_bloc/core/use_case/use_case.dart';
+import 'package:flutter_base_bloc/presentation/home/common/enum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -72,9 +73,9 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onChangedPage(
       _OnChangedPage event, Emitter<HomeState> emit) async {
-    if (state.currentPageIndex != event.page) {
+    if (state.currentPageType != event.page) {
       emit(
-        state.copyWith(currentPageIndex: event.page),
+        state.copyWith(currentPageType: event.page),
       );
     }
   }

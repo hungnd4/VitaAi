@@ -1,15 +1,16 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_bloc/core/base/page/base_page_state.dart';
 import 'package:flutter_base_bloc/core/base/page/base_scafold.dart';
+import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
 import 'package:flutter_base_bloc/core/config/resources/language.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
+import 'package:flutter_base_bloc/gen/assets.gen.dart';
+import 'package:flutter_base_bloc/presentation/home/common/enum.dart';
 import 'package:flutter_base_bloc/presentation/home/widget/home_page.dart';
 import 'package:flutter_base_bloc/presentation/home/widget/list_page.dart';
-import 'package:flutter_base_bloc/utils/common.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'bloc/home_bloc.dart';
 
 class Home extends StatelessWidget {
@@ -69,10 +70,10 @@ class _HomeScreenState extends BasePageState<HomeScreen, HomeBloc> {
       ],
       body: BlocListener<HomeBloc, HomeState>(
         listenWhen: (previous, current) =>
-            previous.currentPageIndex != current.currentPageIndex,
+            previous.currentPageType != current.currentPageType,
         listener: (context, state) {
           _pageController.animateToPage(
-            state.currentPageIndex,
+            state.currentPageType.pageIndex,
             curve: Curves.linearToEaseOut,
             duration: const Duration(
               milliseconds: 300,
@@ -81,67 +82,63 @@ class _HomeScreenState extends BasePageState<HomeScreen, HomeBloc> {
         },
         child: PageView(
           controller: _pageController,
-          onPageChanged: (currentPage) {
-            bloc.add(HomeEvent.changePage(currentPage));
-          },
+          physics: const NeverScrollableScrollPhysics(),
           children: const [
             HomePage(),
+            ListPage(),
             ListPage(),
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        color: AppTheme.getInstance().primaryColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            BlocSelector<HomeBloc, HomeState, int>(
-              selector: (state) {
-                return state.currentPageIndex;
-              },
-              builder: (context, state) {
-                return IconButton(
-                  onPressed: () {
-                    bloc.add(const HomeEvent.changePage(0));
-                  },
-                  icon: Icon(
-                    CupertinoIcons.home,
-                    color: state == 0
-                        ? const Color(0xff870333)
-                        : AppTheme.getInstance().formColor,
-                  ),
-                );
-              },
-            ),
-            BlocSelector<HomeBloc, HomeState, int>(
-              selector: (state) {
-                return state.currentPageIndex;
-              },
-              builder: (context, state) {
-                return IconButton(
-                  onPressed: () {
-                    bloc.add(const HomeEvent.changePage(1));
-                  },
-                  icon: Icon(
-                    CupertinoIcons.list_dash,
-                    color: state == 1
-                        ? const Color(0xff870333)
-                        : AppTheme.getInstance().formColor,
-                  ),
-                );
-              },
-            ),
-            IconButton(
-              onPressed: () {
-                exitApp();
-              },
-              icon: Icon(
-                CupertinoIcons.power,
-                color: AppTheme.getInstance().formColor,
-              ),
-            ),
-          ],
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.pink[200],
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40),
         ),
+        child: Assets.icons.icCamera.svg(
+          colorFilter: ColorFilter.mode(
+            AppTheme.getInstance().chipColor,
+            BlendMode.srcIn,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BlocSelector<HomeBloc, HomeState, PageType>(
+        selector: (state) {
+          return state.currentPageType;
+        },
+        builder: (context, state) {
+          return AnimatedBottomNavigationBar.builder(
+            itemCount: PageType.values.length,
+            tabBuilder: (index, isActive) {
+              final page = PageType.values[index];
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  page.svgGenImage.svg(
+                    colorFilter: ColorFilter.mode(
+                      isActive
+                          ? AppTheme.getInstance().shadow6
+                          : AppTheme.getInstance().chipColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ],
+              );
+            },
+            activeIndex: state.pageIndex,
+            gapLocation: GapLocation.center,
+            notchSmoothness: NotchSmoothness.verySmoothEdge,
+            leftCornerRadius: Dimens.d32,
+            rightCornerRadius: Dimens.d32,
+            backgroundColor: Colors.pink[200],
+            onTap: (index) {
+              bloc.add(HomeEvent.changePage(PageType.values[index]));
+            },
+          );
+        },
       ),
     );
   }

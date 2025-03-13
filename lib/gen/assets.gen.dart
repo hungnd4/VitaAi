@@ -41,6 +41,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_btc.svg
   SvgGenImage get icBtc => const SvgGenImage('assets/icons/ic_btc.svg');
 
+  /// File path: assets/icons/ic_camera.svg
+  SvgGenImage get icCamera => const SvgGenImage('assets/icons/ic_camera.svg');
+
+  /// File path: assets/icons/ic_chatbot.svg
+  SvgGenImage get icChatbot => const SvgGenImage('assets/icons/ic_chatbot.svg');
+
   /// File path: assets/icons/ic_chevron_down.svg
   SvgGenImage get icChevronDown =>
       const SvgGenImage('assets/icons/ic_chevron_down.svg');
@@ -68,9 +74,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_funding.svg
   SvgGenImage get icFunding => const SvgGenImage('assets/icons/ic_funding.svg');
 
+  /// File path: assets/icons/ic_home.svg
+  SvgGenImage get icHome => const SvgGenImage('assets/icons/ic_home.svg');
+
+  /// File path: assets/icons/ic_list.svg
+  SvgGenImage get icList => const SvgGenImage('assets/icons/ic_list.svg');
+
   /// File path: assets/icons/ic_more_horizontal.svg
   SvgGenImage get icMoreHorizontal =>
       const SvgGenImage('assets/icons/ic_more_horizontal.svg');
+
+  /// File path: assets/icons/ic_news.svg
+  SvgGenImage get icNews => const SvgGenImage('assets/icons/ic_news.svg');
 
   /// File path: assets/icons/ic_notice.svg
   SvgGenImage get icNotice => const SvgGenImage('assets/icons/ic_notice.svg');
@@ -92,6 +107,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_send.svg
   SvgGenImage get icSend => const SvgGenImage('assets/icons/ic_send.svg');
+
+  /// File path: assets/icons/ic_setting.svg
+  SvgGenImage get icSetting => const SvgGenImage('assets/icons/ic_setting.svg');
 
   /// File path: assets/icons/ic_settings.svg
   SvgGenImage get icSettings =>
@@ -126,6 +144,8 @@ class $AssetsIconsGen {
         icBasicBack,
         icBasicDown,
         icBtc,
+        icCamera,
+        icChatbot,
         icChevronDown,
         icClose,
         icCopy,
@@ -134,7 +154,10 @@ class $AssetsIconsGen {
         icExport,
         icEyeClose,
         icFunding,
+        icHome,
+        icList,
         icMoreHorizontal,
+        icNews,
         icNotice,
         icReceive,
         icReload,
@@ -142,6 +165,7 @@ class $AssetsIconsGen {
         icRight,
         icScan,
         icSend,
+        icSetting,
         icSettings,
         icSmallReceive,
         icSmallSend,
@@ -199,7 +223,7 @@ class $AssetsTranslationsGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
@@ -236,10 +260,10 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
