@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
                 RoutesName.screenOne.name,
               );
             },
-            child: const Text('Go to screen 1'),
+            child: const Text('Home Page'),
           ),
         ),
       ],

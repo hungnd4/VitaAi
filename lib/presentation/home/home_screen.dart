@@ -7,9 +7,11 @@ import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
 import 'package:flutter_base_bloc/core/config/resources/language.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
 import 'package:flutter_base_bloc/gen/assets.gen.dart';
+import 'package:flutter_base_bloc/presentation/chat_bot_page/chat_bot_page.dart';
 import 'package:flutter_base_bloc/presentation/home/common/enum.dart';
-import 'package:flutter_base_bloc/presentation/home/widget/home_page.dart';
-import 'package:flutter_base_bloc/presentation/home/widget/list_page.dart';
+import 'package:flutter_base_bloc/presentation/home_page/home_page.dart';
+import 'package:flutter_base_bloc/presentation/news_page/news_page.dart';
+import 'package:flutter_base_bloc/presentation/settings_page/setting_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/home_bloc.dart';
 
@@ -85,8 +87,9 @@ class _HomeScreenState extends BasePageState<HomeScreen, HomeBloc> {
           physics: const NeverScrollableScrollPhysics(),
           children: const [
             HomePage(),
-            ListPage(),
-            ListPage(),
+            ChatBotPage(),
+            NewsPage(),
+            SettingPage(),
           ],
         ),
       ),
