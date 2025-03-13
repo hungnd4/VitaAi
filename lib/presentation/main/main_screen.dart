@@ -86,7 +86,7 @@ class _HomeScreenState extends BasePageState<HomeScreen, MainBloc> {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: const [
-            HomePage(),
+            HomePageProvider(),
             ChatBotPage(),
             NewsPage(),
             SettingPage(),
