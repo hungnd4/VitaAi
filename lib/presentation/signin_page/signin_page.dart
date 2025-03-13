@@ -94,7 +94,7 @@ class _SignInPageState extends State<SignInPage> {
                   style: IconButton.styleFrom(
                     backgroundColor: Colors.white,
                     shape: const CircleBorder(
-                      side: BorderSide(color: colorGrey88, width: 2),
+                      side: BorderSide(color: colorGrey88, width: Dimens.d2),
                     ),
                   ),
                   icon: Assets.icons.icGoogle.svg(
@@ -108,7 +108,7 @@ class _SignInPageState extends State<SignInPage> {
                   style: IconButton.styleFrom(
                     backgroundColor: Colors.white,
                     shape: const CircleBorder(
-                      side: BorderSide(color: colorGrey88, width: 2),
+                      side: BorderSide(color: colorGrey88, width: Dimens.d2),
                     ),
                   ),
                   icon: Assets.icons.icFacebook.svg(
