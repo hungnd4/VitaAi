@@ -1,11 +1,11 @@
-part of 'home_bloc.dart';
+part of 'main_bloc.dart';
 
 @freezed
-class HomeState extends BaseState with _$HomeState {
-  const factory HomeState({
+class MainState extends BaseState with _$MainState {
+  const factory MainState({
     @Default(<UserModel>[]) List<UserModel> users,
     UserModel? userInfo,
     @Default(PageType.home) PageType currentPageType,
     AppException? err,
-  }) = _HomeState;
+  }) = _MainState;
 }

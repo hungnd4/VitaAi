@@ -8,20 +8,20 @@ import 'package:flutter_base_bloc/core/config/resources/language.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
 import 'package:flutter_base_bloc/gen/assets.gen.dart';
 import 'package:flutter_base_bloc/presentation/chat_bot_page/chat_bot_page.dart';
-import 'package:flutter_base_bloc/presentation/home/common/enum.dart';
+import 'package:flutter_base_bloc/presentation/main/common/enum.dart';
 import 'package:flutter_base_bloc/presentation/home_page/home_page.dart';
 import 'package:flutter_base_bloc/presentation/news_page/news_page.dart';
 import 'package:flutter_base_bloc/presentation/settings_page/setting_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/home_bloc.dart';
+import 'bloc/main_bloc.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Main extends StatelessWidget {
+  const Main({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeBloc(),
+      create: (context) => MainBloc(),
       child: const HomeScreen(),
     );
   }
@@ -34,13 +34,13 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends BasePageState<HomeScreen, HomeBloc> {
+class _HomeScreenState extends BasePageState<HomeScreen, MainBloc> {
   final _pageController = PageController();
 
   @override
   void initState() {
-    bloc.add(const HomeEvent.getAllUser());
-    bloc.add(const HomeEvent.getUserInfo());
+    bloc.add(const MainEvent.getAllUser());
+    bloc.add(const MainEvent.getUserInfo());
     super.initState();
   }
 
@@ -70,7 +70,7 @@ class _HomeScreenState extends BasePageState<HomeScreen, HomeBloc> {
           ),
         )
       ],
-      body: BlocListener<HomeBloc, HomeState>(
+      body: BlocListener<MainBloc, MainState>(
         listenWhen: (previous, current) =>
             previous.currentPageType != current.currentPageType,
         listener: (context, state) {
@@ -107,7 +107,7 @@ class _HomeScreenState extends BasePageState<HomeScreen, HomeBloc> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BlocSelector<HomeBloc, HomeState, PageType>(
+      bottomNavigationBar: BlocSelector<MainBloc, MainState, PageType>(
         selector: (state) {
           return state.currentPageType;
         },
@@ -138,7 +138,7 @@ class _HomeScreenState extends BasePageState<HomeScreen, HomeBloc> {
             rightCornerRadius: Dimens.d32,
             backgroundColor: Colors.pink[200],
             onTap: (index) {
-              bloc.add(HomeEvent.changePage(PageType.values[index]));
+              bloc.add(MainEvent.changePage(PageType.values[index]));
             },
           );
         },

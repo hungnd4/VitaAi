@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_bloc/presentation/home/bloc/home_bloc.dart';
-import 'package:flutter_base_bloc/presentation/home/widget/user_items.dart';
+import 'package:flutter_base_bloc/presentation/main/bloc/main_bloc.dart';
+import 'package:flutter_base_bloc/presentation/main/widget/user_items.dart';
 import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,13 +9,13 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
+    return BlocBuilder<MainBloc, MainState>(
       buildWhen: (previous, current) =>
           previous.err != current.err && previous.users != current.users,
       builder: (context, state) {
         return RefreshIndicator(
           onRefresh: () async {
-            context.read<HomeBloc>().add(const HomeEvent.getAllUser());
+            context.read<MainBloc>().add(const MainEvent.getAllUser());
           },
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -26,8 +26,8 @@ class ListPage extends StatelessWidget {
                       return UserItem(
                         user: state.users[i],
                         onTap: () {
-                          context.read<HomeBloc>().add(
-                                HomeEvent.getUser(state.users[i].id ?? ''),
+                          context.read<MainBloc>().add(
+                                MainEvent.getUser(state.users[i].id ?? ''),
                               );
                         },
                       );

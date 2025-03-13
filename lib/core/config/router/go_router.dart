@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_bloc/core/network/di/module.dart';
 import 'package:flutter_base_bloc/domain/locals/prefs_service.dart';
-import 'package:flutter_base_bloc/presentation/home/home_screen.dart';
+import 'package:flutter_base_bloc/presentation/main/main_screen.dart';
 import 'package:flutter_base_bloc/presentation/screen_one/screen_one.dart';
 import 'package:go_router/go_router.dart';
 
@@ -59,7 +59,7 @@ final GoRouter appRouterConfig = GoRouter(
   routes: <RouteBase>[
     _defaultGorouter(
       router: RoutesName.home,
-      page: const Home(),
+      page: const Main(),
       goRoutes: [
         _defaultGorouter(
           router: RoutesName.screenOne,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_bloc/core/config/router/router_name.dart';
 import 'package:flutter_base_bloc/domain/entities/user.dart';
-import 'package:flutter_base_bloc/presentation/home/bloc/home_bloc.dart';
+import 'package:flutter_base_bloc/presentation/main/bloc/main_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        BlocSelector<HomeBloc, HomeState, UserModel?>(
+        BlocSelector<MainBloc, MainState, UserModel?>(
           selector: (state) {
             return state.userInfo;
           },
