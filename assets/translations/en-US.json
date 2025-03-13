@@ -1,10 +1,17 @@
 {
-    "homePage":"Home Page",
-    "cancel":"Cancel",
-    "close":"Close",
-    "login":"Login",
-    "logout":"Logout",
-    "exit":"Exit app",
-    "confirmExit":"Are you sure want to exit?",
-    "yes":"Yes"
+    "homePage": "Home Page",
+    "cancel": "Cancel",
+    "close": "Close",
+    "login": "Login",
+    "logout": "Logout",
+    "exit": "Exit app",
+    "confirmExit": "Are you sure want to exit?",
+    "yes": "Yes",
+    "orContinueWith": "or continue with",
+    "dontHaveAnAccount": "Don't have an account?",
+    "google": "Google",
+    "facebook": "Facebook",
+    "signUp": "SignUp",
+    "password": "PassWord",
+    "sdt": "Phone number"
 }

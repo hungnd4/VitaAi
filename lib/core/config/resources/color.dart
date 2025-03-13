@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const colorPrimary = Color(0xff038757);
+const colorPrimary = Color(0xffF17C9B);
 const colorForm = Color(0xffE5F0F2);
 const colorTextPrimary = Color(0xff2C2C2C);
 const colorSecondary = Color(0xff9E9E9E);
@@ -19,6 +19,10 @@ const colorChip = Color(0xffF0F0F0);
 const colorExchange = Color(0xff596E73);
 const colorGrey88 = Color(0xffE0E0E0);
 const colorGrey51 = Color(0xff828282);
+const colorWhite = Color(0xffffffff);
+const colorBlack = Color(0xff000000);
+const colorEEEEEE = Color(0xffEEEEEE);
+const colorBrown = Color(0xff993300);
 
 ///=========== Using to make change app theme ================================
 abstract class AppColor {
@@ -42,6 +46,7 @@ abstract class AppColor {
   List<Color> get linearOnboarding;
   List<Color> get linearToolbar;
   List<Color> get linearSystemWallet;
+  List<Color> get linearButton;
 }
 
 class LightApp extends AppColor {
@@ -105,6 +110,11 @@ class LightApp extends AppColor {
   List<Color> get linearSystemWallet => [
         colorSystemLeft,
         colorSystemRight,
+      ];
+  @override
+  List<Color> get linearButton => [
+        colorPrimary,
+        colorSecondary,
       ];
 
   @override
@@ -193,6 +203,11 @@ class DarkApp extends AppColor {
   List<Color> get linearSystemWallet => [
         colorSystemLeft,
         colorSystemRight,
+      ];
+  @override
+  List<Color> get linearButton => [
+        colorPrimary,
+        colorSecondary,
       ];
 
   @override
