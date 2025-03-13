@@ -13,5 +13,10 @@
     "facebook": "Facebook",
     "signUp": "SignUp",
     "password": "PassWord",
-    "sdt": "Phone number"
+    "confirmPassword": "Confirm PassWord",
+    "sdt": "Phone number",
+    "send": "Send",
+    "enterOtpCode": "Enter OTP code",
+    "createAccount": "Create an account",
+    "enterYourPhone": "Please enter your phone number to create an account"
 }

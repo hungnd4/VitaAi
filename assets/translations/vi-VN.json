@@ -11,5 +11,10 @@
     "facebook": "Facebook",
     "signUp": "Đăng Ký",
     "password": "Mật khẩu",
-    "sdt": "Số điện thoại"
+    "confirmPassword": "Xác nhân mật khẩu",
+    "sdt": "Số điện thoại",
+    "send": "Gửi",
+    "enterOtpCode": "Nhập mã OTP",
+    "createAccount": "Tạo tài khoản",
+    "enterYourPhone": "Nhập số điện thoại của bạn để đăng ký ứng dụng này"
 }
