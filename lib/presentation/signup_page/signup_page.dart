@@ -13,28 +13,26 @@ import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
-  TextEditingController textInputController = TextEditingController();
-  TextEditingController passInputController = TextEditingController();
+class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController numPhoneController = TextEditingController();
   @override
   void dispose() {
-    textInputController.dispose();
-    passInputController.dispose();
+    numPhoneController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      showBackButton: false,
       showAppBar: false,
+      showBackButton: false,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -47,33 +45,32 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 spaceH24,
                 Text(
-                  LocaleKeys.login.tr(),
+                  LocaleKeys.signUp.tr(),
                   style: AppTextStyle.interBoldText,
+                ),
+                spaceH2,
+                FittedBox(
+                  child: Text(
+                    LocaleKeys.enterYourPhone.tr(),
+                    style: AppTextStyle.interText,
+                  ),
                 ),
                 spaceH24,
                 TextFieldCommon(
                   hintText: LocaleKeys.sdt.tr(),
-                  controller: textInputController,
+                  controller: numPhoneController,
                   maxLength: 10,
-                ),
-                spaceH16,
-                TextFieldCommon(
-                  hintText: LocaleKeys.password.tr(),
-                  controller: passInputController,
-                  isPassword: true,
                 ),
                 spaceH16,
                 AppButton(
                   width: double.infinity,
-                  title: LocaleKeys.login.tr(),
+                  title: LocaleKeys.send.tr(),
                   color: colorPrimary,
                   style: AppTextStyle.interBoldText.copyWith(
                     fontWeight: FontWeight.w500,
                     color: colorWhite,
                   ),
-                  onTap: () {
-                    context.goNamed(RoutesName.main.name);
-                  },
+                  onTap: () => context.goNamed(RoutesName.verify.name),
                 ),
                 spaceH24,
                 Row(
@@ -137,29 +134,6 @@ class _SignInPageState extends State<SignInPage> {
                       icon: Assets.icons.icFacebook.svg(
                         width: 32.w,
                         height: 32.h,
-                      ),
-                    ),
-                  ],
-                ),
-                spaceH24,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      LocaleKeys.dontHaveAnAccount.tr(),
-                      style: AppTextStyle.interText,
-                    ),
-                    spaceW5,
-                    GestureDetector(
-                      onTap: () {
-                        context.goNamed(RoutesName.register.name);
-                      },
-                      child: Text(
-                        LocaleKeys.signUp.tr(),
-                        style: AppTextStyle.interText.copyWith(
-                          color: colorPrimary,
-                          fontWeight: FontWeight.w700,
-                        ),
                       ),
                     ),
                   ],

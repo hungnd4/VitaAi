@@ -11,5 +11,16 @@
     "facebook": "Facebook",
     "signUp": "Đăng Ký",
     "password": "Mật khẩu",
-    "sdt": "Số điện thoại"
+    "confirmPassword": "Xác nhân mật khẩu",
+    "sdt": "Số điện thoại",
+    "send": "Gửi",
+    "enterOtpCode": "Nhập mã OTP",
+    "createAccount": "Tạo tài khoản",
+    "enterYourPhone": "Nhập số điện thoại của bạn để đăng ký ứng dụng",
+    "verificationCode": "Mã xác minh",
+    "verifyCode": "Vui lòng nhập mã xác minh mà chúng tôi đã gửi đến số điện thoại của bạn",
+    "resendIn": "Gửi lại trong",
+    "creatPassword": "Tạo mật khẩu",
+    "labelPassword": "Mật khẩu mới của bạn phải khác với mật khẩu đã sử dụng trước đó",
+    "confirm": "Xác nhận"
 }
