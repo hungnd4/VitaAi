@@ -13,6 +13,9 @@ class TextFieldCommon extends StatelessWidget {
   final TextStyle? hintStyle;
   final Widget? suffixIcon;
   final bool isPassword;
+  final TextAlign? textAlign;
+  final int? maxLength;
+  final Function(String)? onChanged;
 
   const TextFieldCommon({
     this.borderRadius,
@@ -23,6 +26,9 @@ class TextFieldCommon extends StatelessWidget {
     this.suffixIcon,
     required this.hintText,
     this.labelText,
+    this.textAlign,
+    this.maxLength,
+    this.onChanged,
     required this.controller,
     super.key,
   });
@@ -30,6 +36,9 @@ class TextFieldCommon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
+      maxLength: maxLength,
+      textAlign: textAlign ?? TextAlign.start,
       controller: controller,
       obscureText: isPassword,
       decoration: InputDecoration(
@@ -40,6 +49,7 @@ class TextFieldCommon extends StatelessWidget {
                 color: AppTheme.getInstance().grey88Color,
               ),
         ),
+        counterText: '',
         focusedBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(Dimens.d8),
           borderSide: borderSide ??
