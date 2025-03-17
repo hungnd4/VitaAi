@@ -44,6 +44,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_camera.svg
   SvgGenImage get icCamera => const SvgGenImage('assets/icons/ic_camera.svg');
 
+  /// File path: assets/icons/ic_camera2.svg
+  SvgGenImage get icCamera2 => const SvgGenImage('assets/icons/ic_camera2.svg');
+
   /// File path: assets/icons/ic_chatbot.svg
   SvgGenImage get icChatbot => const SvgGenImage('assets/icons/ic_chatbot.svg');
 
@@ -77,6 +80,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_funding.svg
   SvgGenImage get icFunding => const SvgGenImage('assets/icons/ic_funding.svg');
+
+  /// File path: assets/icons/ic_gallery.svg
+  SvgGenImage get icGallery => const SvgGenImage('assets/icons/ic_gallery.svg');
 
   /// File path: assets/icons/ic_google.svg
   SvgGenImage get icGoogle => const SvgGenImage('assets/icons/ic_google.svg');
@@ -152,6 +158,7 @@ class $AssetsIconsGen {
         icBasicDown,
         icBtc,
         icCamera,
+        icCamera2,
         icChatbot,
         icChevronDown,
         icClose,
@@ -162,6 +169,7 @@ class $AssetsIconsGen {
         icEyeClose,
         icFacebook,
         icFunding,
+        icGallery,
         icGoogle,
         icHome,
         icList,

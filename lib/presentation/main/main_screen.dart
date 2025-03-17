@@ -7,6 +7,7 @@ import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
 import 'package:flutter_base_bloc/core/config/resources/language.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
 import 'package:flutter_base_bloc/gen/assets.gen.dart';
+import 'package:flutter_base_bloc/presentation/camera_screen/camera_screen.dart';
 import 'package:flutter_base_bloc/presentation/chat_bot_page/chat_bot_page.dart';
 import 'package:flutter_base_bloc/presentation/main/common/enum.dart';
 import 'package:flutter_base_bloc/presentation/home_page/home_page.dart';
@@ -39,8 +40,8 @@ class _HomeScreenState extends BasePageState<HomeScreen, MainBloc> {
 
   @override
   void initState() {
-    bloc.add(const MainEvent.getAllUser());
-    bloc.add(const MainEvent.getUserInfo());
+    // bloc.add(const MainEvent.getAllUser());
+    // bloc.add(const MainEvent.getUserInfo());
     super.initState();
   }
 
@@ -95,7 +96,14 @@ class _HomeScreenState extends BasePageState<HomeScreen, MainBloc> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pink[200],
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CameraProvider(),
+            ),
+          );
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
         ),
