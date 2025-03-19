@@ -196,6 +196,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/default-image.png
+  AssetGenImage get defaultImage =>
+      const AssetGenImage('assets/images/default-image.png');
+
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
@@ -221,6 +225,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        defaultImage,
         logo,
         logoBtc,
         onboardingFirst,

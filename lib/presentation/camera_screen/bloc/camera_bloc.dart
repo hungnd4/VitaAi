@@ -11,21 +11,40 @@ part 'camera_state.dart';
 part 'camera_bloc.freezed.dart';
 
 class CameraBloc extends BaseBloc<CameraEvent, CameraState> {
+  late final List<CameraDescription> cameras;
+  late final CameraController controller;
+
   CameraBloc() : super(const _cameraState()) {
+    on<_OnInitializeCamera>(_initializeCamera);
     on<_OnImageFromCamera>(_onImageFromCamera);
     on<_OnImageFromGallery>(_onImageFromGallery);
   }
 
+  Future<void> _initializeCamera(
+      _OnInitializeCamera event, Emitter<CameraState> emit) async {
+    cameras = await availableCameras();
+    controller = CameraController(
+      cameras.first,
+      ResolutionPreset.high,
+    );
+    await controller.initialize();
+
+    emit(
+      state.copyWith(
+        cameras: cameras,
+        cameraController: controller,
+      ),
+    );
+  }
+
   Future<void> _onImageFromCamera(
       _OnImageFromCamera event, Emitter<CameraState> emit) async {
-    final CameraController cameraController = event.controller;
-    if (!cameraController.value.isInitialized ||
-        cameraController.value.isTakingPicture) {
+    if (!controller.value.isInitialized || controller.value.isTakingPicture) {
       return;
     }
 
-    await cameraController.setFlashMode(FlashMode.auto);
-    XFile image = await cameraController.takePicture();
+    await controller.setFlashMode(FlashMode.auto);
+    XFile image = await controller.takePicture();
     emit(
       state.copyWith(
         image: File(image.path),
