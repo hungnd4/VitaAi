@@ -56,7 +56,7 @@ GoRoute _transitionRouter({
 
 final GoRouter appRouterConfig = GoRouter(
   navigatorKey: getIt.get<GlobalKey<NavigatorState>>(),
-  initialLocation: (PrefsService.getFirstLaunch)
+  initialLocation: (PrefsService.getToken().isEmpty)
       ? RoutesName.login.path
       : RoutesName.main.path,
   routes: <RouteBase>[
@@ -74,7 +74,7 @@ final GoRouter appRouterConfig = GoRouter(
     ),
     _defaultGorouter(
       router: RoutesName.verify,
-      builder: (context, state) => const VerifyPage(),
+      builder: (context, state) => const VerifyPageProvider(),
     ),
     _defaultGorouter(
       router: RoutesName.password,

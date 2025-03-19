@@ -7,7 +7,9 @@ import 'package:flutter_base_bloc/core/config/resources/styles.dart';
 import 'package:flutter_base_bloc/core/config/router/router_name.dart';
 import 'package:flutter_base_bloc/gen/translations.g.dart';
 import 'package:flutter_base_bloc/presentation/widgets/button/app_button.dart';
-import 'package:flutter_base_bloc/presentation/widgets/textField/text_field_common.dart';
+import 'package:flutter_base_bloc/presentation/widgets/textField/text_form_field_common.dart';
+import 'package:flutter_base_bloc/utils/common.dart';
+import 'package:flutter_base_bloc/utils/constants/regex_constants.dart';
 import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +22,7 @@ class PasswordPage extends StatefulWidget {
 }
 
 class _PasswordPageState extends State<PasswordPage> {
+  final _formkey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
@@ -54,16 +57,40 @@ class _PasswordPageState extends State<PasswordPage> {
                 style: AppTextStyle.interText,
               ),
               spaceH24,
-              TextFieldCommon(
-                hintText: LocaleKeys.password.tr(),
-                controller: passwordController,
-                isPassword: true,
+              Form(
+                key: _formkey,
+                child: TextFormFieldCommon(
+                  hintText: LocaleKeys.password.tr(),
+                  controller: passwordController,
+                  isPassword: true,
+                  validator: (password) {
+                    if (password == null || password.isEmpty) {
+                      return LocaleKeys.errorPasswordOne.tr();
+                    } else if (!RegExp(RegexConstants.PASSWORD_REGEX)
+                        .hasMatch(password)) {
+                      return LocaleKeys.errorPasswordOne.tr();
+                    }
+                    return null;
+                  },
+                ),
               ),
               spaceH16,
-              TextFieldCommon(
+              TextFormFieldCommon(
                 hintText: LocaleKeys.confirmPassword.tr(),
                 controller: confirmPasswordController,
                 isPassword: true,
+                validator: (password) {
+                  if (password == null || password.isEmpty) {
+                    return LocaleKeys.errorPasswordOne.tr();
+                  } else if (!RegExp(RegexConstants.PASSWORD_REGEX)
+                      .hasMatch(password)) {
+                    return LocaleKeys.errorPasswordOne.tr();
+                  } else if (passwordController.text !=
+                      confirmPasswordController.text) {
+                    return LocaleKeys.errorPassWord.tr();
+                  }
+                  return null;
+                },
               ),
               spaceH24,
               AppButton(
@@ -74,7 +101,15 @@ class _PasswordPageState extends State<PasswordPage> {
                   fontWeight: FontWeight.w500,
                   color: colorWhite,
                 ),
-                onTap: () => context.goNamed(RoutesName.login.name),
+                onTap: () {
+                  if (_formkey.currentState!.validate() &&
+                      passwordController.text ==
+                          confirmPasswordController.text) {
+                    context.goNamed(RoutesName.login.name);
+                  } else {
+                    showToast(LocaleKeys.error.tr());
+                  }
+                },
               ),
             ],
           ),

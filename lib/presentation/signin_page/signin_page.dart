@@ -8,10 +8,13 @@ import 'package:flutter_base_bloc/core/config/router/router_name.dart';
 import 'package:flutter_base_bloc/gen/assets.gen.dart';
 import 'package:flutter_base_bloc/gen/translations.g.dart';
 import 'package:flutter_base_bloc/presentation/widgets/button/app_button.dart';
-import 'package:flutter_base_bloc/presentation/widgets/textField/text_field_common.dart';
+import 'package:flutter_base_bloc/presentation/widgets/textField/text_form_field_common.dart';
+import 'package:flutter_base_bloc/utils/constants/regex_constants.dart';
 import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+final _formkey = GlobalKey<FormState>();
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -51,16 +54,45 @@ class _SignInPageState extends State<SignInPage> {
                   style: AppTextStyle.interBoldText,
                 ),
                 spaceH24,
-                TextFieldCommon(
-                  hintText: LocaleKeys.sdt.tr(),
-                  controller: textInputController,
-                  maxLength: 10,
-                ),
-                spaceH16,
-                TextFieldCommon(
-                  hintText: LocaleKeys.password.tr(),
-                  controller: passInputController,
-                  isPassword: true,
+                Form(
+                  key: _formkey,
+                  child: Column(
+                    children: [
+                      TextFormFieldCommon(
+                        maxLength: 10,
+                        hintText: LocaleKeys.phoneNumber.tr(),
+                        controller: textInputController,
+                        validator: (phoneNumber) {
+                          if (phoneNumber == null || phoneNumber.isEmpty) {
+                            return LocaleKeys.errorPhoneNumberOne.tr();
+                          } else if (phoneNumber.length < 10 ||
+                              phoneNumber.length > 10) {
+                            return LocaleKeys.errorPhoneNumber.tr();
+                          } else if (!RegExp(RegexConstants.VN_PHONE)
+                              .hasMatch(phoneNumber)) {
+                            return LocaleKeys.errorPasswordOne.tr();
+                          }
+
+                          return null;
+                        },
+                      ),
+                      spaceH16,
+                      TextFormFieldCommon(
+                        hintText: LocaleKeys.password.tr(),
+                        controller: passInputController,
+                        isPassword: true,
+                        validator: (password) {
+                          if (password == null || password.isEmpty) {
+                            return LocaleKeys.errorPasswordTwo.tr();
+                          } else if (!RegExp(RegexConstants.PASSWORD_REGEX)
+                              .hasMatch(password)) {
+                            return LocaleKeys.errorPasswordOne.tr();
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
                 ),
                 spaceH16,
                 AppButton(
@@ -72,7 +104,9 @@ class _SignInPageState extends State<SignInPage> {
                     color: colorWhite,
                   ),
                   onTap: () {
-                    context.goNamed(RoutesName.main.name);
+                    if (_formkey.currentState!.validate()) {
+                      context.goNamed(RoutesName.main.name);
+                    }
                   },
                 ),
                 spaceH24,

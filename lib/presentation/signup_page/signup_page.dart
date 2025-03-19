@@ -7,11 +7,15 @@ import 'package:flutter_base_bloc/core/config/resources/styles.dart';
 import 'package:flutter_base_bloc/core/config/router/router_name.dart';
 import 'package:flutter_base_bloc/gen/assets.gen.dart';
 import 'package:flutter_base_bloc/gen/translations.g.dart';
+import 'package:flutter_base_bloc/presentation/signup_page/widget/verify_page.dart';
 import 'package:flutter_base_bloc/presentation/widgets/button/app_button.dart';
-import 'package:flutter_base_bloc/presentation/widgets/textField/text_field_common.dart';
+import 'package:flutter_base_bloc/presentation/widgets/textField/text_form_field_common.dart';
+import 'package:flutter_base_bloc/utils/constants/regex_constants.dart';
 import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+final _formkey = GlobalKey<FormState>();
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -56,10 +60,25 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 spaceH24,
-                TextFieldCommon(
-                  hintText: LocaleKeys.sdt.tr(),
-                  controller: numPhoneController,
-                  maxLength: 10,
+                Form(
+                  key: _formkey,
+                  child: TextFormFieldCommon(
+                    maxLength: 10,
+                    hintText: LocaleKeys.phoneNumber.tr(),
+                    controller: numPhoneController,
+                    validator: (phoneNumber) {
+                      if (phoneNumber == null || phoneNumber.isEmpty) {
+                        return LocaleKeys.errorPhoneNumberOne.tr();
+                      } else if (phoneNumber.length < 10 ||
+                          phoneNumber.length > 10) {
+                        return LocaleKeys.errorPhoneNumber.tr();
+                      } else if (!RegExp(RegexConstants.VN_PHONE)
+                          .hasMatch(phoneNumber)) {
+                        return LocaleKeys.errorPhoneNumber.tr();
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 spaceH16,
                 AppButton(
@@ -70,7 +89,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     fontWeight: FontWeight.w500,
                     color: colorWhite,
                   ),
-                  onTap: () => context.goNamed(RoutesName.verify.name),
+                  onTap: () {
+                    if (_formkey.currentState!.validate()) {
+                      context.goNamed(RoutesName.verify.name);
+                    }
+                  },
                 ),
                 spaceH24,
                 Row(

@@ -12,7 +12,7 @@
     "signUp": "Đăng Ký",
     "password": "Mật khẩu",
     "confirmPassword": "Xác nhân mật khẩu",
-    "sdt": "Số điện thoại",
+    "phoneNumber": "Số điện thoại",
     "send": "Gửi",
     "enterOtpCode": "Nhập mã OTP",
     "createAccount": "Tạo tài khoản",
@@ -22,5 +22,14 @@
     "resendIn": "Gửi lại trong",
     "creatPassword": "Tạo mật khẩu",
     "labelPassword": "Mật khẩu mới của bạn phải khác với mật khẩu đã sử dụng trước đó",
-    "confirm": "Xác nhận"
+    "confirm": "Xác nhận",
+    "pleaseEnterPhoneNumber": "Vui lòng nhập số điện thoại",
+    "pleaseEnterPassword": "Vui lòng nhập mật khẩu",
+    "errorPhoneNumber": "Sai số điện thoại",
+    "errorPhoneNumberVn": "Không phải số điện thoại Việt Nam",
+    "errorPassWord": "Sai mật khẩu",
+    "errorPhoneNumberOne": "Số điện thoại không được để trống",
+    "errorPasswordOne": "Mật khẩu từ 6 - 20 ký tự và ít nhất một chữ cái viết hoa",
+    "errorPasswordTw0": "Mật khẩu không được để trống",
+    "error": "Lỗi"
 }
