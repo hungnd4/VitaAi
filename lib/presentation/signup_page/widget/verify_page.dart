@@ -138,7 +138,7 @@ class _VerifyPageState extends State<VerifyPage> {
                           }
                         },
                         child: Text(
-                          'Gửi lại',
+                          LocaleKeys.resendIn.tr(),
                           style: AppTextStyle.interBoldText.copyWith(
                             fontSize: 14.sp,
                             color: (state.isFirstTime || state.remainTime == 0)

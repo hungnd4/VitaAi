@@ -21,7 +21,7 @@
     "enterYourPhone": "Please enter your phone number to create an account",
     "verificationCode": "Verification code",
     "verifyCode": "Please enter the verification code we sent to your number phone",
-    "resendIn": "Resend in",
+    "resendIn": "Resend",
     "creatPassword": "Creat password",
     "labelPassword": "Your new password must be different from previously used password",
     "confirm": "Confirm",
@@ -33,5 +33,6 @@
     "errorPassWord": "Error Password",
     "errorPasswordOne": "Password must be 6 - 20 characters and at least one uppercase letter",
     "errorPasswordTwo": "Password cannot be empty",
-    "error": "Error"
+    "error": "Error",
+    "registrationSuccessful": "Registration Successful"
 }

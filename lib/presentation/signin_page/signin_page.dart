@@ -12,6 +12,7 @@ import 'package:flutter_base_bloc/presentation/widgets/textField/text_form_field
 import 'package:flutter_base_bloc/utils/constants/regex_constants.dart';
 import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 
 final _formkey = GlobalKey<FormState>();
@@ -42,7 +43,7 @@ class _SignInPageState extends State<SignInPage> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(
-                Dimens.d24, Dimens.d128, Dimens.d24, 0),
+                Dimens.d24, Dimens.d128, Dimens.d24, Dimens.d16),
             child: Column(
               children: [
                 Center(
@@ -62,34 +63,30 @@ class _SignInPageState extends State<SignInPage> {
                         maxLength: 10,
                         hintText: LocaleKeys.phoneNumber.tr(),
                         controller: textInputController,
-                        validator: (phoneNumber) {
-                          if (phoneNumber == null || phoneNumber.isEmpty) {
-                            return LocaleKeys.errorPhoneNumberOne.tr();
-                          } else if (phoneNumber.length < 10 ||
-                              phoneNumber.length > 10) {
-                            return LocaleKeys.errorPhoneNumber.tr();
-                          } else if (!RegExp(RegexConstants.VN_PHONE)
-                              .hasMatch(phoneNumber)) {
-                            return LocaleKeys.errorPasswordOne.tr();
-                          }
-
-                          return null;
-                        },
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: LocaleKeys.errorPhoneNumberOne.tr(),
+                          ),
+                          FormBuilderValidators.match(
+                            RegExp(RegexConstants.VN_PHONE),
+                            errorText: LocaleKeys.errorPhoneNumber.tr(),
+                          ),
+                        ]),
                       ),
                       spaceH16,
                       TextFormFieldCommon(
                         hintText: LocaleKeys.password.tr(),
                         controller: passInputController,
                         isPassword: true,
-                        validator: (password) {
-                          if (password == null || password.isEmpty) {
-                            return LocaleKeys.errorPasswordTwo.tr();
-                          } else if (!RegExp(RegexConstants.PASSWORD_REGEX)
-                              .hasMatch(password)) {
-                            return LocaleKeys.errorPasswordOne.tr();
-                          }
-                          return null;
-                        },
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: LocaleKeys.errorPasswordTwo.tr(),
+                          ),
+                          FormBuilderValidators.match(
+                            RegExp(RegexConstants.PASSWORD_REGEX),
+                            errorText: LocaleKeys.errorPasswordOne.tr(),
+                          ),
+                        ]),
                       ),
                     ],
                   ),

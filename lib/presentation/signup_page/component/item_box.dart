@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_bloc/core/config/resources/color.dart';
 import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
+import 'package:flutter_base_bloc/gen/translations.g.dart';
 import 'package:flutter_base_bloc/utils/constants/regex_constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 class ItemBoxForm extends StatefulWidget {
   final TextEditingController controllerItem;
@@ -78,14 +81,15 @@ class _ItemBoxFormState extends State<ItemBoxForm> {
             borderSide: BorderSide(color: colorFail, width: 1),
           ),
         ),
-        validator: (code) {
-          if (code == null || code.isEmpty) {
-            return ' ';
-          } else if (!RegExp(RegexConstants.ONLY_DIGITS).hasMatch(code)) {
-            return ' ';
-          }
-          return null;
-        },
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(
+            errorText: LocaleKeys.error.tr(),
+          ),
+          FormBuilderValidators.match(
+            RegExp(RegexConstants.ONLY_DIGITS),
+            errorText: LocaleKeys.error.tr(),
+          ),
+        ]),
       ),
     );
   }

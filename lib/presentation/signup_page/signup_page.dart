@@ -7,15 +7,13 @@ import 'package:flutter_base_bloc/core/config/resources/styles.dart';
 import 'package:flutter_base_bloc/core/config/router/router_name.dart';
 import 'package:flutter_base_bloc/gen/assets.gen.dart';
 import 'package:flutter_base_bloc/gen/translations.g.dart';
-import 'package:flutter_base_bloc/presentation/signup_page/widget/verify_page.dart';
 import 'package:flutter_base_bloc/presentation/widgets/button/app_button.dart';
 import 'package:flutter_base_bloc/presentation/widgets/textField/text_form_field_common.dart';
 import 'package:flutter_base_bloc/utils/constants/regex_constants.dart';
 import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
-
-final _formkey = GlobalKey<FormState>();
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -25,6 +23,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _formkey = GlobalKey<FormState>();
   TextEditingController numPhoneController = TextEditingController();
   @override
   void dispose() {
@@ -66,18 +65,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     maxLength: 10,
                     hintText: LocaleKeys.phoneNumber.tr(),
                     controller: numPhoneController,
-                    validator: (phoneNumber) {
-                      if (phoneNumber == null || phoneNumber.isEmpty) {
-                        return LocaleKeys.errorPhoneNumberOne.tr();
-                      } else if (phoneNumber.length < 10 ||
-                          phoneNumber.length > 10) {
-                        return LocaleKeys.errorPhoneNumber.tr();
-                      } else if (!RegExp(RegexConstants.VN_PHONE)
-                          .hasMatch(phoneNumber)) {
-                        return LocaleKeys.errorPhoneNumber.tr();
-                      }
-                      return null;
-                    },
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: LocaleKeys.errorPhoneNumberOne.tr(),
+                      ),
+                      FormBuilderValidators.match(
+                        RegExp(RegexConstants.VN_PHONE),
+                        errorText: LocaleKeys.errorPhoneNumber.tr(),
+                      ),
+                    ]),
                   ),
                 ),
                 spaceH16,

@@ -36,6 +36,7 @@ dependencies:
   fluttertoast: ^8.2.8
   animated_bottom_navigation_bar: ^1.4.0
   device_preview: ^1.2.0
+  form_builder_validators: ^11.1.2
 
 dev_dependencies:
   flutter_test:

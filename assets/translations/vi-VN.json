@@ -19,7 +19,7 @@
     "enterYourPhone": "Nhập số điện thoại của bạn để đăng ký ứng dụng",
     "verificationCode": "Mã xác minh",
     "verifyCode": "Vui lòng nhập mã xác minh mà chúng tôi đã gửi đến số điện thoại của bạn",
-    "resendIn": "Gửi lại trong",
+    "resendIn": "Gửi lại ",
     "creatPassword": "Tạo mật khẩu",
     "labelPassword": "Mật khẩu mới của bạn phải khác với mật khẩu đã sử dụng trước đó",
     "confirm": "Xác nhận",
@@ -30,6 +30,7 @@
     "errorPassWord": "Sai mật khẩu",
     "errorPhoneNumberOne": "Số điện thoại không được để trống",
     "errorPasswordOne": "Mật khẩu từ 6 - 20 ký tự và ít nhất một chữ cái viết hoa",
-    "errorPasswordTw0": "Mật khẩu không được để trống",
-    "error": "Lỗi"
+    "errorPasswordTwo": "Mật khẩu không được để trống",
+    "error": "Lỗi",
+    "registrationSuccessful": "Đăng Ký Thành Công"
 }

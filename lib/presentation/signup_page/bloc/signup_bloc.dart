@@ -16,19 +16,15 @@ class SignupBloc extends BaseBloc<SignupEvent, SignupState> {
   Future<void> _onStartCountdown(
       _OnStartCountdown event, Emitter<SignupState> emit) async {
     emit(
-      state.copyWith(
-        remainTime: 10,
-      ),
+      state.copyWith(remainTime: 10),
     );
-    await for (var _ in Stream.periodic(const Duration(seconds: 1))) {
-      if (state.remainTime > 0) {
-        emit(
-          state.copyWith(
-            remainTime: state.remainTime - 1,
-            isFirstTime: false,
-          ),
-        );
-      }
+
+    while (state.remainTime > 0) {
+      await Future.delayed(const Duration(seconds: 1));
+      emit(state.copyWith(
+        remainTime: state.remainTime - 1,
+        isFirstTime: false,
+      ));
     }
   }
 }

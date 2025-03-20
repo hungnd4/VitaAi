@@ -12,6 +12,7 @@ import 'package:flutter_base_bloc/utils/common.dart';
 import 'package:flutter_base_bloc/utils/constants/regex_constants.dart';
 import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 
 class PasswordPage extends StatefulWidget {
@@ -60,37 +61,36 @@ class _PasswordPageState extends State<PasswordPage> {
               Form(
                 key: _formkey,
                 child: TextFormFieldCommon(
+                  maxLength: 20,
                   hintText: LocaleKeys.password.tr(),
                   controller: passwordController,
                   isPassword: true,
-                  validator: (password) {
-                    if (password == null || password.isEmpty) {
-                      return LocaleKeys.errorPasswordOne.tr();
-                    } else if (!RegExp(RegexConstants.PASSWORD_REGEX)
-                        .hasMatch(password)) {
-                      return LocaleKeys.errorPasswordOne.tr();
-                    }
-                    return null;
-                  },
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(
+                      errorText: LocaleKeys.errorPasswordTwo.tr(),
+                    ),
+                    FormBuilderValidators.match(
+                      RegExp(RegexConstants.PASSWORD_REGEX),
+                      errorText: LocaleKeys.errorPasswordOne.tr(),
+                    ),
+                  ]),
                 ),
               ),
               spaceH16,
               TextFormFieldCommon(
+                maxLength: 20,
                 hintText: LocaleKeys.confirmPassword.tr(),
                 controller: confirmPasswordController,
                 isPassword: true,
-                validator: (password) {
-                  if (password == null || password.isEmpty) {
-                    return LocaleKeys.errorPasswordOne.tr();
-                  } else if (!RegExp(RegexConstants.PASSWORD_REGEX)
-                      .hasMatch(password)) {
-                    return LocaleKeys.errorPasswordOne.tr();
-                  } else if (passwordController.text !=
-                      confirmPasswordController.text) {
-                    return LocaleKeys.errorPassWord.tr();
-                  }
-                  return null;
-                },
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(
+                    errorText: LocaleKeys.errorPasswordTwo.tr(),
+                  ),
+                  FormBuilderValidators.match(
+                    RegExp(RegexConstants.PASSWORD_REGEX),
+                    errorText: LocaleKeys.errorPasswordOne.tr(),
+                  ),
+                ]),
               ),
               spaceH24,
               AppButton(
@@ -106,6 +106,7 @@ class _PasswordPageState extends State<PasswordPage> {
                       passwordController.text ==
                           confirmPasswordController.text) {
                     context.goNamed(RoutesName.login.name);
+                    showToast(LocaleKeys.registrationSuccessful.tr());
                   } else {
                     showToast(LocaleKeys.error.tr());
                   }
