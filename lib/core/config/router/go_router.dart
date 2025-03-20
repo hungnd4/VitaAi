@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_bloc/core/network/di/module.dart';
 import 'package:flutter_base_bloc/domain/locals/prefs_service.dart';
+import 'package:flutter_base_bloc/presentation/camera_screen/camera_screen.dart';
 import 'package:flutter_base_bloc/presentation/camera_screen/image_screen/image_screen.dart';
 import 'package:flutter_base_bloc/presentation/main/main_screen.dart';
 import 'package:flutter_base_bloc/presentation/signin_page/signin_page.dart';
@@ -70,6 +71,10 @@ final GoRouter appRouterConfig = GoRouter(
       builder: (context, state) => ImageScreen(
         image: state.extra as String?,
       ),
+    ),
+    _defaultGorouter(
+      router: RoutesName.cameraScreen,
+      builder: (context, state) => const CameraProvider(),
     ),
   ],
 );

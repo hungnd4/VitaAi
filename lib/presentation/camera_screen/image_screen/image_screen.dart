@@ -36,6 +36,7 @@ class ImageScreen extends StatelessWidget {
                               ),
                       ),
                     ),
+                    //TODO:Hau
                     const Expanded(
                       child: Text(
                         'Ảnh chụp',

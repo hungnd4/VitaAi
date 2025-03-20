@@ -56,14 +56,15 @@ class _CameraState extends BasePageState<Camera, CameraBloc> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            BlocBuilder<CameraBloc, CameraState>(
-              builder: (context, state) {
-                if (state.cameraController == null) {
+            BlocSelector<CameraBloc, CameraState, CameraController?>(
+              selector: (state) => state.cameraController,
+              builder: (context, cameraController) {
+                if (cameraController == null) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
-                return CameraPreview(state.cameraController!);
+                return CameraPreview(cameraController);
               },
             ),
             Positioned(
