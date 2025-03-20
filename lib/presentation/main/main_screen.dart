@@ -5,6 +5,7 @@ import 'package:flutter_base_bloc/core/base/page/base_page_state.dart';
 import 'package:flutter_base_bloc/core/base/page/base_scafold.dart';
 import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
 import 'package:flutter_base_bloc/core/config/resources/language.dart';
+import 'package:flutter_base_bloc/core/config/router/router_name.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
 import 'package:flutter_base_bloc/gen/assets.gen.dart';
 import 'package:flutter_base_bloc/presentation/chat_bot_page/chat_bot_page.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_base_bloc/presentation/home_page/home_page.dart';
 import 'package:flutter_base_bloc/presentation/news_page/news_page.dart';
 import 'package:flutter_base_bloc/presentation/settings_page/setting_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'bloc/main_bloc.dart';
 
 class Main extends StatelessWidget {
@@ -39,8 +41,8 @@ class _HomeScreenState extends BasePageState<HomeScreen, MainBloc> {
 
   @override
   void initState() {
-    bloc.add(const MainEvent.getAllUser());
-    bloc.add(const MainEvent.getUserInfo());
+    // bloc.add(const MainEvent.getAllUser());
+    // bloc.add(const MainEvent.getUserInfo());
     super.initState();
   }
 
@@ -95,7 +97,11 @@ class _HomeScreenState extends BasePageState<HomeScreen, MainBloc> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pink[200],
-        onPressed: () {},
+        onPressed: () {
+          context.pushNamed(
+            RoutesName.cameraScreen.name,
+          );
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
         ),

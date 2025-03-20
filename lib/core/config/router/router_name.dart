@@ -1,8 +1,10 @@
 class RoutesName {
   static RoutesGen get login => const RoutesGen('login');
   static RoutesGen get register => const RoutesGen('register');
-  static RoutesGen get home => const RoutesGen('home', '');
+  static RoutesGen get main => const RoutesGen('main', '');
   static RoutesGen get screenOne => const RoutesGen('screenOne');
+  static RoutesGen get cameraScreen => const RoutesGen('cameraScreen');
+  static RoutesGen get imageScreen => const RoutesGen('imageScreen');
 }
 
 class RoutesGen {

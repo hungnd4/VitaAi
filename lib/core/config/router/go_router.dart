@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_bloc/core/network/di/module.dart';
 import 'package:flutter_base_bloc/domain/locals/prefs_service.dart';
+import 'package:flutter_base_bloc/presentation/camera_screen/camera_screen.dart';
+import 'package:flutter_base_bloc/presentation/camera_screen/image_screen/image_screen.dart';
 import 'package:flutter_base_bloc/presentation/main/main_screen.dart';
-import 'package:flutter_base_bloc/presentation/screen_one/screen_one.dart';
+import 'package:flutter_base_bloc/presentation/signin_page/signin_page.dart';
+
 import 'package:go_router/go_router.dart';
 
 import 'router_name.dart';
 
 GoRoute _defaultGorouter({
   required RoutesGen router,
-  required Widget page,
+  required Widget Function(BuildContext context, GoRouterState state) builder,
   List<GoRoute> goRoutes = const [],
 }) =>
     GoRoute(
       path: router.path,
       name: router.name,
       routes: goRoutes,
-      builder: (BuildContext context, GoRouterState state) {
-        return page;
-      },
+      builder: builder,
     );
 
 // ignore: unused_element
@@ -55,17 +56,25 @@ GoRoute _transitionRouter({
 
 final GoRouter appRouterConfig = GoRouter(
   navigatorKey: getIt.get<GlobalKey<NavigatorState>>(),
-  initialLocation: RoutesName.home.path,
+  initialLocation: RoutesName.main.path,
   routes: <RouteBase>[
     _defaultGorouter(
-      router: RoutesName.home,
-      page: const Main(),
-      goRoutes: [
-        _defaultGorouter(
-          router: RoutesName.screenOne,
-          page: const ScreenOne(),
-        ),
-      ],
+      router: RoutesName.main,
+      builder: (context, state) => const Main(),
+    ),
+    _defaultGorouter(
+      router: RoutesName.login,
+      builder: (context, state) => const SignInPage(),
+    ),
+    _defaultGorouter(
+      router: RoutesName.imageScreen,
+      builder: (context, state) => ImageScreen(
+        image: state.extra as String?,
+      ),
+    ),
+    _defaultGorouter(
+      router: RoutesName.cameraScreen,
+      builder: (context, state) => const CameraProvider(),
     ),
   ],
 );
