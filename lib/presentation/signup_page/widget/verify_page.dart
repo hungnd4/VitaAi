@@ -10,6 +10,8 @@ import 'package:flutter_base_bloc/gen/translations.g.dart';
 import 'package:flutter_base_bloc/presentation/signup_page/bloc/signup_bloc.dart';
 import 'package:flutter_base_bloc/presentation/signup_page/component/item_box.dart';
 import 'package:flutter_base_bloc/presentation/widgets/button/app_button.dart';
+import 'package:flutter_base_bloc/utils/common.dart';
+import 'package:flutter_base_bloc/utils/constants/regex_constants.dart';
 import 'package:flutter_base_bloc/utils/style_utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -59,6 +61,17 @@ class _VerifyPageState extends State<VerifyPage> {
     super.dispose();
   }
 
+  bool validateForm() {
+    final otp = controllers.map((c) => c.text).join();
+    if (otp.length != 4 || !RegExp(RegexConstants.ONLY_DIGITS).hasMatch(otp)) {
+      showToast(
+        LocaleKeys.error.tr(),
+      );
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -85,17 +98,21 @@ class _VerifyPageState extends State<VerifyPage> {
               spaceH24,
               Form(
                 key: _formkey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(4, (index) {
-                    return ItemBoxForm(
-                      controllerItem: controllers[index],
-                      hintTextItem: '0',
-                      currentFocus: focusNodes[index],
-                      nextFocus: index < 3 ? focusNodes[index + 1] : null,
-                      previousFocus: index > 0 ? focusNodes[index - 1] : null,
-                    );
-                  }),
+                  children: List.generate(
+                    4,
+                    (index) {
+                      return ItemBoxForm(
+                        controllerItem: controllers[index],
+                        hintTextItem: ' ',
+                        currentFocus: focusNodes[index],
+                        nextFocus: index < 3 ? focusNodes[index + 1] : null,
+                        previousFocus: index > 0 ? focusNodes[index - 1] : null,
+                      );
+                    },
+                  ),
                 ),
               ),
               spaceH24,
@@ -108,7 +125,7 @@ class _VerifyPageState extends State<VerifyPage> {
                   color: colorWhite,
                 ),
                 onTap: () {
-                  if (_formkey.currentState!.validate()) {
+                  if (validateForm()) {
                     context.goNamed(RoutesName.password.name);
                   }
                 },

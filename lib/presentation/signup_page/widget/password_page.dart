@@ -60,37 +60,43 @@ class _PasswordPageState extends State<PasswordPage> {
               spaceH24,
               Form(
                 key: _formkey,
-                child: TextFormFieldCommon(
-                  maxLength: 20,
-                  hintText: LocaleKeys.password.tr(),
-                  controller: passwordController,
-                  isPassword: true,
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(
-                      errorText: LocaleKeys.errorPasswordTwo.tr(),
+                child: Column(
+                  children: [
+                    TextFormFieldCommon(
+                      maxLength: 20,
+                      hintText: LocaleKeys.password.tr(),
+                      controller: passwordController,
+                      isPassword: true,
+                      validator: FormBuilderValidators.compose(
+                        [
+                          FormBuilderValidators.required(
+                            errorText: LocaleKeys.errorPasswordTwo.tr(),
+                          ),
+                          FormBuilderValidators.match(
+                            RegExp(RegexConstants.PASSWORD_REGEX),
+                            errorText: LocaleKeys.errorPasswordOne.tr(),
+                          ),
+                        ],
+                      ),
                     ),
-                    FormBuilderValidators.match(
-                      RegExp(RegexConstants.PASSWORD_REGEX),
-                      errorText: LocaleKeys.errorPasswordOne.tr(),
+                    spaceH16,
+                    TextFormFieldCommon(
+                      maxLength: 20,
+                      hintText: LocaleKeys.confirmPassword.tr(),
+                      controller: confirmPasswordController,
+                      isPassword: true,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                          errorText: LocaleKeys.errorPasswordTwo.tr(),
+                        ),
+                        FormBuilderValidators.match(
+                          RegExp(RegexConstants.PASSWORD_REGEX),
+                          errorText: LocaleKeys.errorPasswordOne.tr(),
+                        ),
+                      ]),
                     ),
-                  ]),
+                  ],
                 ),
-              ),
-              spaceH16,
-              TextFormFieldCommon(
-                maxLength: 20,
-                hintText: LocaleKeys.confirmPassword.tr(),
-                controller: confirmPasswordController,
-                isPassword: true,
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(
-                    errorText: LocaleKeys.errorPasswordTwo.tr(),
-                  ),
-                  FormBuilderValidators.match(
-                    RegExp(RegexConstants.PASSWORD_REGEX),
-                    errorText: LocaleKeys.errorPasswordOne.tr(),
-                  ),
-                ]),
               ),
               spaceH24,
               AppButton(
