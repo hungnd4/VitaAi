@@ -23,6 +23,7 @@ const colorWhite = Color(0xffffffff);
 const colorBlack = Color(0xff000000);
 const colorEEEEEE = Color(0xffEEEEEE);
 const colorBrown = Color(0xff993300);
+const colorBlue = Color(0xff1E90FF);
 
 ///=========== Using to make change app theme ================================
 abstract class AppColor {

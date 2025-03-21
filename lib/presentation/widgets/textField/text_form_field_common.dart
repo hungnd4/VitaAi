@@ -3,44 +3,52 @@ import 'package:flutter_base_bloc/core/config/resources/dimens.dart';
 import 'package:flutter_base_bloc/core/config/resources/styles.dart';
 import 'package:flutter_base_bloc/core/config/themes/app_theme.dart';
 
-class TextFieldCommon extends StatelessWidget {
+class TextFormFieldCommon extends StatelessWidget {
   final BorderSide? borderSide;
   final BorderRadius? borderRadius;
-  final TextEditingController controller;
-  final String hintText;
   final String? labelText;
   final TextStyle? labelStyle;
+  final String? hintText;
   final TextStyle? hintStyle;
-  final Widget? suffixIcon;
+  final TextEditingController controller;
   final bool isPassword;
-  final TextAlign? textAlign;
+  final String? Function(String?)? validator;
+  final Widget? suffixIcon;
   final int? maxLength;
+  final TextAlign? textAlign;
+  final TextInputType? keyboardType;
   final Function(String)? onChanged;
 
-  const TextFieldCommon({
-    this.borderRadius,
-    this.isPassword = false,
-    this.borderSide,
-    this.hintStyle,
-    this.labelStyle,
-    this.suffixIcon,
-    required this.hintText,
-    this.labelText,
-    this.textAlign,
-    this.maxLength,
-    this.onChanged,
-    required this.controller,
+  const TextFormFieldCommon({
     super.key,
+    this.labelStyle,
+    this.borderSide,
+    this.borderRadius,
+    this.labelText,
+    this.isPassword = false,
+    this.hintStyle,
+    this.suffixIcon,
+    this.maxLength,
+    this.textAlign,
+    this.keyboardType,
+    required this.hintText,
+    required this.controller,
+    this.onChanged,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      autofocus: true,
+      keyboardType: keyboardType,
       onChanged: onChanged,
-      maxLength: maxLength,
       textAlign: textAlign ?? TextAlign.start,
+      validator: validator,
       controller: controller,
+      maxLength: maxLength,
       obscureText: isPassword,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(Dimens.d8),

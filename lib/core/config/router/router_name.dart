@@ -3,6 +3,9 @@ class RoutesName {
   static RoutesGen get register => const RoutesGen('register');
   static RoutesGen get home => const RoutesGen('home', '');
   static RoutesGen get screenOne => const RoutesGen('screenOne');
+  static RoutesGen get main => const RoutesGen('main');
+  static RoutesGen get verify => const RoutesGen('verify');
+  static RoutesGen get password => const RoutesGen('password');
 }
 
 class RoutesGen {

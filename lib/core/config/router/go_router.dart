@@ -2,23 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base_bloc/core/network/di/module.dart';
 import 'package:flutter_base_bloc/domain/locals/prefs_service.dart';
 import 'package:flutter_base_bloc/presentation/main/main_screen.dart';
-import 'package:flutter_base_bloc/presentation/screen_one/screen_one.dart';
+import 'package:flutter_base_bloc/presentation/signin_page/signin_page.dart';
+import 'package:flutter_base_bloc/presentation/signup_page/signup_page.dart';
+import 'package:flutter_base_bloc/presentation/signup_page/widget/password_page.dart';
+import 'package:flutter_base_bloc/presentation/signup_page/widget/verify_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'router_name.dart';
 
 GoRoute _defaultGorouter({
   required RoutesGen router,
-  required Widget page,
+  required Widget Function(BuildContext context, GoRouterState state) builder,
   List<GoRoute> goRoutes = const [],
 }) =>
     GoRoute(
       path: router.path,
       name: router.name,
       routes: goRoutes,
-      builder: (BuildContext context, GoRouterState state) {
-        return page;
-      },
+      builder: builder,
     );
 
 // ignore: unused_element
@@ -55,17 +56,29 @@ GoRoute _transitionRouter({
 
 final GoRouter appRouterConfig = GoRouter(
   navigatorKey: getIt.get<GlobalKey<NavigatorState>>(),
-  initialLocation: RoutesName.home.path,
+  initialLocation: (PrefsService.getToken().isEmpty)
+      ? RoutesName.login.path
+      : RoutesName.main.path,
   routes: <RouteBase>[
     _defaultGorouter(
-      router: RoutesName.home,
-      page: const Main(),
-      goRoutes: [
-        _defaultGorouter(
-          router: RoutesName.screenOne,
-          page: const ScreenOne(),
-        ),
-      ],
+      router: RoutesName.login,
+      builder: (context, state) => const SignInPage(),
+    ),
+    _defaultGorouter(
+      router: RoutesName.register,
+      builder: (context, state) => const SignUpPage(),
+    ),
+    _defaultGorouter(
+      router: RoutesName.main,
+      builder: (context, state) => const Main(),
+    ),
+    _defaultGorouter(
+      router: RoutesName.verify,
+      builder: (context, state) => const VerifyPageProvider(),
+    ),
+    _defaultGorouter(
+      router: RoutesName.password,
+      builder: (context, state) => const PasswordPage(),
     ),
   ],
 );

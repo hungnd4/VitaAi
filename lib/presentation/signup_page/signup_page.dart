@@ -15,35 +15,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 
-final _formkey = GlobalKey<FormState>();
-
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
-  TextEditingController textInputController = TextEditingController();
-  TextEditingController passInputController = TextEditingController();
+class _SignUpPageState extends State<SignUpPage> {
+  final _formkey = GlobalKey<FormState>();
+  TextEditingController numPhoneController = TextEditingController();
   @override
   void dispose() {
-    textInputController.dispose();
-    passInputController.dispose();
+    numPhoneController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      showBackButton: false,
       showAppBar: false,
+      showBackButton: false,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(
-                Dimens.d24, Dimens.d128, Dimens.d24, Dimens.d16),
+                Dimens.d24, Dimens.d128, Dimens.d24, 0),
             child: Column(
               children: [
                 Center(
@@ -51,50 +48,38 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 spaceH24,
                 Text(
-                  LocaleKeys.login.tr(),
+                  LocaleKeys.signUp.tr(),
                   style: AppTextStyle.interBoldText,
+                ),
+                spaceH2,
+                FittedBox(
+                  child: Text(
+                    LocaleKeys.enterYourPhone.tr(),
+                    style: AppTextStyle.interText,
+                  ),
                 ),
                 spaceH24,
                 Form(
                   key: _formkey,
-                  child: Column(
-                    children: [
-                      TextFormFieldCommon(
-                        maxLength: 10,
-                        hintText: LocaleKeys.phoneNumber.tr(),
-                        controller: textInputController,
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: LocaleKeys.errorPhoneNumberOne.tr(),
-                          ),
-                          FormBuilderValidators.match(
-                            RegExp(RegexConstants.VN_PHONE),
-                            errorText: LocaleKeys.errorPhoneNumber.tr(),
-                          ),
-                        ]),
+                  child: TextFormFieldCommon(
+                    maxLength: 10,
+                    hintText: LocaleKeys.phoneNumber.tr(),
+                    controller: numPhoneController,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: LocaleKeys.errorPhoneNumberOne.tr(),
                       ),
-                      spaceH16,
-                      TextFormFieldCommon(
-                        hintText: LocaleKeys.password.tr(),
-                        controller: passInputController,
-                        isPassword: true,
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                            errorText: LocaleKeys.errorPasswordTwo.tr(),
-                          ),
-                          FormBuilderValidators.match(
-                            RegExp(RegexConstants.PASSWORD_REGEX),
-                            errorText: LocaleKeys.errorPasswordOne.tr(),
-                          ),
-                        ]),
+                      FormBuilderValidators.match(
+                        RegExp(RegexConstants.VN_PHONE),
+                        errorText: LocaleKeys.errorPhoneNumber.tr(),
                       ),
-                    ],
+                    ]),
                   ),
                 ),
                 spaceH16,
                 AppButton(
                   width: double.infinity,
-                  title: LocaleKeys.login.tr(),
+                  title: LocaleKeys.send.tr(),
                   color: colorPrimary,
                   style: AppTextStyle.interBoldText.copyWith(
                     fontWeight: FontWeight.w500,
@@ -102,7 +87,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   onTap: () {
                     if (_formkey.currentState!.validate()) {
-                      context.goNamed(RoutesName.main.name);
+                      context.goNamed(RoutesName.verify.name);
                     }
                   },
                 ),
@@ -168,29 +153,6 @@ class _SignInPageState extends State<SignInPage> {
                       icon: Assets.icons.icFacebook.svg(
                         width: 32.w,
                         height: 32.h,
-                      ),
-                    ),
-                  ],
-                ),
-                spaceH24,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      LocaleKeys.dontHaveAnAccount.tr(),
-                      style: AppTextStyle.interText,
-                    ),
-                    spaceW5,
-                    GestureDetector(
-                      onTap: () {
-                        context.goNamed(RoutesName.register.name);
-                      },
-                      child: Text(
-                        LocaleKeys.signUp.tr(),
-                        style: AppTextStyle.interText.copyWith(
-                          color: colorPrimary,
-                          fontWeight: FontWeight.w700,
-                        ),
                       ),
                     ),
                   ],
